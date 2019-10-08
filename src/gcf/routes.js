@@ -5,7 +5,8 @@ const fs = require( 'fs' );
 const vars = require( path.join( __dirname, '../vars.js' ) );
 
 const common = require( path.join( vars.GCF_PATH, 'common.js' ) );
-const trends_util = require( path.join( vars.GCF_PATH, 'trends_util.js' ) );
+
+const gcf_util = require( path.join( vars.GCF_PATH, 'gcf_util.js' ) );
 const chartjs_util = require( path.join( vars.GCF_PATH, 'chartjs_util.js' ) );
 
 function handle_option_call( req, res ) {
@@ -16,7 +17,22 @@ function handle_option_call( req, res ) {
 }
 
 function handle_post_interest_of_time( req, res ){
-  res.send(JSON.stringify(chartjs_util.helloworld_chart()))
+  // res.send( JSON.stringify( chartjs_util.helloworld_chart() ) )
+
+  // console.log( req.body.q );
+
+  switch ( req.body.q ) {
+    case vars.Q_INTEREST_BY_REGION:
+      console.log( 'interestByRegion' );
+      gcf_util.interestByRegion(req.body.param)
+    case vars.Q_DAILY_TRENDS:
+      console.log( 'dailytrends' );
+
+
+
+    default:
+      break;
+  }
 }
 
 function handle_get_q_call( req, res ) {
@@ -27,15 +43,6 @@ function handle_get_q_call( req, res ) {
   //   resolution: 'CITY'
   // }
   switch ( req.query.q ) {
-    case 'test':
-        trends_util.gcf_interestByRegion( {
-        keyword: 'Donald Trump',
-        startTime: new Date( '2017-02-01' ),
-        endTime: new Date( '2017-02-06' ),
-        resolution: 'CITY'
-      } )
-        .then( result => res.send( common.pre_print(result) ));
-      break;
     default:
       res.send( 'the q parameters not handled' );
       break;
@@ -46,11 +53,28 @@ function send_required_func_not_found ( req, res ) {
   res.send( 'call type not found' + req.query );
 }
 
+function process_search_param ( param_in ) {
+  var output_d = {};
+  Object.keys( param_in ).forEach( x => {
+    if ( ['startTime','endTime'].indexOf(x) > -1 ) {
+      output_d[x] = new Date( param_in[x] );
+    } else {
+      output_d[x] = param_in[x];
+    }
+  })
+  return output_d;
+}
+
 function handle_post_trends ( req, res ) {
-  console.log( req.body.trends );
-  switch ( req.body.trends ) {
-    case "interestOfTime":
-      handle_post_interest_of_time( req, res );
+  // console.log( req.body.trends );
+  switch ( req.body.q ) {
+    case vars.Q_INTEREST_OVER_TIME:
+      gcf_util.interestOverTime( process_search_param( req.body.param ) )
+        .then( result => res.send( result ) );
+      break;
+    case vars.Q_INTEREST_BY_REGION:
+      gcf_util.interestByRegion( process_search_param(req.body.param) )
+        .then( result => res.send( result ) );
       break;
     default:
       send_required_func_not_found( req, res );
@@ -59,7 +83,7 @@ function handle_post_trends ( req, res ) {
 }
 
 function handle_post_call ( req, res ) {
-  if ( Object.keys( req.body ).indexOf( 'trends' ) > -1 ) {
+  if ( Object.keys( req.body ).indexOf( 'q' ) > -1 ) {
     handle_post_trends( req, res );
 
   } else {

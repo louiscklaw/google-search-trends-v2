@@ -21,7 +21,7 @@ function html () {
 }
 
 function css() {
-    return src( 'src/pug/css/*.less' )
+    return src( 'src/pug/css/style.less' )
         .pipe( less() )
         // .pipe( minifyCSS() )
         .pipe( dest( 'docs/css' ) )

@@ -1,33 +1,46 @@
-
 const DEFAULT_HASH = '#home';
+const API_BASE_URL = 'http://localhost:8082';
 
-function helloworld () {
+const Q_DAILY_TRENDS = "dailyTrends";
+const Q_INTEREST_OVER_TIME = "interestOverTime";
+const Q_INTEREST_BY_REGION = "interestByRegion";
+const Q_REAL_TIME_TRENDS = "realTimeTrends";
+const Q_RELATED_QUERIES = "relatedQueries";
+const Q_RELATED_TOPICS = "relatedTopics";
+
+const TYPE_TRENDS = 'trends';
+
+function print_pre( str_in ) {
+  return '<pre>' + str_in + '</pre>';
+}
+
+function helloworld() {
   alert( 'helloworld' );
 }
 
-function get_ele ( sel_in ) {
+function get_ele( sel_in ) {
   return document.querySelector( sel_in );
 }
 
-function get_eles ( sel_in ) {
+function get_eles( sel_in ) {
   return document.querySelectorAll( sel_in );
 }
 
-function highlight_button ( sel_in ) {
-  console.log( 'highlight_button:'+sel_in );
+function highlight_button( sel_in ) {
+  console.log( 'highlight_button:' + sel_in );
   get_ele( sel_in ).classList.add( 'nav_button_highlighted' );
 }
 
-function unhighlight_button () {
+function unhighlight_button() {
   get_eles( '.nav_button' ).forEach( x => {
     x.classList.remove( 'nav_button_highlighted' );
-  })
+  } )
   // get_ele(sel_in).classList.remove('nav_button_highlighted')
 }
 
-function update_highlight_button ( hash_in ) {
+function update_highlight_button( hash_in ) {
   document.querySelectorAll( 'div.nav_button' ).forEach( x => {
-    if ( x.id != null & x.id != '') {
+    if ( x.id != null & x.id != '' ) {
       console.log( "hash_in: " + hash_in );
       console.log( "id:" + x.id );
       if ( "#" + x.id == hash_in ) {
@@ -37,19 +50,24 @@ function update_highlight_button ( hash_in ) {
       }
 
     }
-  })
+  } )
 }
 
-function clear_all_highlight_button () {
-}
-
-function test_listen () {
+function listen_to_hash_change() {
   window.addEventListener( 'hashchange', function () {
     // clear_all_highlight_button();
     update_highlight_button( window.location.hash );
-  });
+  } );
 }
 
+function init_grid_animation () {
+
+  const grid = document.querySelector( ".grid" );
+  animateCSSGrid.wrapGrid( grid, {
+    duration: 600
+  } );
+
+}
 
 document.addEventListener( "DOMContentLoaded", function () {
   // if ( window.location.hash == '' ) {
@@ -61,5 +79,8 @@ document.addEventListener( "DOMContentLoaded", function () {
   } else {
     update_highlight_button( window.location.hash );
   }
-  test_listen();
+
+  listen_to_hash_change();
+  init_grid_animation();
+
 } );
