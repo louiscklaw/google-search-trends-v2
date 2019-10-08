@@ -1,21 +1,7 @@
-const DEFAULT_HASH = '#home';
-const API_BASE_URL = 'http://localhost:8082';
-
-const Q_DAILY_TRENDS = "dailyTrends";
-const Q_INTEREST_OVER_TIME = "interestOverTime";
-const Q_INTEREST_BY_REGION = "interestByRegion";
-const Q_REAL_TIME_TRENDS = "realTimeTrends";
-const Q_RELATED_QUERIES = "relatedQueries";
-const Q_RELATED_TOPICS = "relatedTopics";
-
-const TYPE_TRENDS = 'trends';
+// app.js
 
 function print_pre( str_in ) {
   return '<pre>' + str_in + '</pre>';
-}
-
-function helloworld() {
-  alert( 'helloworld' );
 }
 
 function get_ele( sel_in ) {
@@ -64,7 +50,7 @@ function init_grid_animation () {
 
   const grid = document.querySelector( ".grid" );
   animateCSSGrid.wrapGrid( grid, {
-    duration: 600
+    duration: 60000
   } );
 
 }

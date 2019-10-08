@@ -28,7 +28,11 @@ function css() {
 }
 
 function js() {
-    return src( 'src/pug/js/*.js', {
+  return src( [
+    'src/pug/js/_const.js',
+    'src/pug/js/_common.js',
+    'src/pug/js/*.js'
+    ], {
             sourcemaps: true
         } )
         .pipe( concat( 'app.min.js' ) )
