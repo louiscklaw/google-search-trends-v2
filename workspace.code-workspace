@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "/home/logic/_workspace/pug_portfolio"
+		},
+		{
+			"path": "/home/logic/_workspace/google-trends-api-tryout"
+		},
+		{
+			"path": "/home/logic/_workspace/google-search-trends"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "google-search-trends-v2"
+	}
+}
