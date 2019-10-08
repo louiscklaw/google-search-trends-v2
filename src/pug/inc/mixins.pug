@@ -1,0 +1,6 @@
+mixin trending_search(topic, geo_in)
+  .cards#trending_search #{topic}
+  script.
+    document.addEventListener( "DOMContentLoaded", function () {
+      daily_trends('#trending_search', 'HK', new Date() );
+    } );

@@ -1,17 +1,5 @@
 // app.js
 
-function print_pre( str_in ) {
-  return '<pre>' + str_in + '</pre>';
-}
-
-function get_ele( sel_in ) {
-  return document.querySelector( sel_in );
-}
-
-function get_eles( sel_in ) {
-  return document.querySelectorAll( sel_in );
-}
-
 function highlight_button( sel_in ) {
   console.log( 'highlight_button:' + sel_in );
   get_ele( sel_in ).classList.add( 'nav_button_highlighted' );
@@ -46,7 +34,7 @@ function listen_to_hash_change() {
   } );
 }
 
-function init_grid_animation () {
+function init_grid_animation() {
 
   const grid = document.querySelector( ".grid" );
   animateCSSGrid.wrapGrid( grid, {
