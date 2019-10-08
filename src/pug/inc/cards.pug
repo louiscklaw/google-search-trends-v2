@@ -21,5 +21,9 @@ include mixins.pug
 .cards test_chart_interest_over_time
   .chart_container#test_chart_interest_over_time
 
+
 .cards#trending_search trending_search
   +trending_search('trending search of HK', 'HK')
+
+.cards#test_chart
+  +chart_interest_over_time('test topic', ['Valentines Day'])

@@ -81,14 +81,13 @@ function create_chart( chart_id, keywords_in, data_json ) {
     data: {
       labels: extract_chart_label( data_json ),
       datasets: _.range( keywords_in.length ).map( x => {
-        console.log( extract_chart_data( data_json ) );
         return {
-          label: keywords_in[x],
+          label: keywords_in[ x ],
           // backgroundColor: 'rgb(255, 99, 132)',
           borderColor: 'rgb(255, 99, 132)',
           data: extract_chart_data( data_json ),
         }
-      })
+      } )
     },
     options: {}
   } );

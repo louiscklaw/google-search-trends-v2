@@ -1,6 +1,31 @@
 mixin trending_search(topic, geo_in)
-  .cards#trending_search #{topic}
+  .cards#trending_search 123
   script.
     document.addEventListener( "DOMContentLoaded", function () {
       daily_trends('#trending_search', 'HK', new Date() );
     } );
+
+mixin chart_interest_over_time(topic, keywords)
+  .card_content
+    h2= topic
+    #chart_container
+    script.
+      document.addEventListener( "DOMContentLoaded", function () {
+        var _chart_id = 'test_chart_id';
+        keywords_to_search = [ 'Valentines Day' ];
+        fetch_post_request( {
+            q: Q_INTEREST_OVER_TIME,
+            param: {
+              keyword: keywords_to_search
+            }
+          } )
+          .then( res => res.text() )
+          .then( text => JSON.parse( text ) )
+          .then( json => {
+            get_ele( '#chart_container' ).innerHTML = get_chartjs_canvas_html( _chart_id );
+            return json;
+          } )
+          .then( ( json ) => {
+            create_chart( _chart_id, keywords_to_search, json );
+          } );
+      } );

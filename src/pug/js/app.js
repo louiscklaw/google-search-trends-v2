@@ -15,8 +15,6 @@ function unhighlight_button() {
 function update_highlight_button( hash_in ) {
   document.querySelectorAll( 'div.nav_button' ).forEach( x => {
     if ( x.id != null & x.id != '' ) {
-      console.log( "hash_in: " + hash_in );
-      console.log( "id:" + x.id );
       if ( "#" + x.id == hash_in ) {
         x.classList.add( 'nav_button_highlighted' );
       } else {
