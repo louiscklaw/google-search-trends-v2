@@ -36,7 +36,7 @@ function init_grid_animation() {
 
   const grid = document.querySelector( ".grid" );
   animateCSSGrid.wrapGrid( grid, {
-    duration: 60000
+    duration: 600
   } );
 
 }

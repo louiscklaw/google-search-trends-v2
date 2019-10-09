@@ -66,3 +66,17 @@ mixin chart_vector_map(topic, params, map_id)
             } );
           } );
       } );
+
+mixin related_queries( params, table_id, max_row)
+  div(id=table_id)
+  script.
+    document.addEventListener( "DOMContentLoaded", function () {
+      related_queries( '#!{table_id}', !{JSON.stringify(params)}, '!{max_row}' );
+    } );
+
+mixin related_topics( params, table_id, max_row)
+  div(id=table_id)
+  script.
+    document.addEventListener( "DOMContentLoaded", function () {
+      related_topics( '#!{table_id}', !{JSON.stringify(params)}, '!{max_row}' );
+    } );
