@@ -27,16 +27,20 @@ function get_google_trend_href( href_in ) {
   return 'https://trends.google.com' + href_in;
 }
 
-function encap ( content, encap ) {
-  return '<' + encap + '>' + content + '</' + encap + '>';
+function encap ( content, encap, encap_class='' ) {
+  if ( encap_class != '' ) {
+    return '<' + encap + ' class="'+encap_class+'">' + content + '</' + encap + '>';
+  } else {
+    return '<' + encap + '>' + content + '</' + encap + '>';
+  }
 }
 
-function encap_td ( content ) {
-  return encap(content,'td');
+function encap_td ( content, td_class="" ) {
+  return encap(content,'td', td_class);
 }
 
-function encap_tr ( content ) {
-  return encap( content, 'tr' );
+function encap_tr ( content, tr_class="" ) {
+  return encap( content, 'tr', tr_class );
 }
 
 function encap_thead ( content ) {
@@ -56,15 +60,38 @@ function get_a_href( text, href ) {
 }
 
 function get_thead ( cols_name ) {
-　 return encap_thead(encap_tr(cols_name.map( x => encap_td(x) ).join('')));
+  return encap_thead(
+    encap_tr(
+      _.range( cols_name.length ).map( idx => {
+        if ( idx > 2 ) {
+          return encap_td( cols_name[idx], 'hide_column' );
+        } else {
+          return encap_td( cols_name[idx] );
+        }
+      })
+    )
+  )
+  // return encap_thead(encap_tr(cols_name.map( x => encap_td(x) ).join('')));
 }
 
 function get_tfoot( cols_name ) {
   return encap_tfoot(encap_tr(cols_name.map( x => encap_td(x) ).join('')));
 }
 
-function get_table_row ( row_cotnent ) {
-  var content = row_cotnent.map( x => encap_td(x) );
+function get_table_row ( row_content ) {
+
+  // var content = row_cotnent.map( x => encap_td(x,'test') );
+  var content = _.range( row_content.length ).map( idx =>{
+    if ( idx > 2 ) {
+      return encap_td( row_content[idx], [
+        'td_' + idx,
+        'hide_column'
+      ].join( ' ' )
+      );
+    } else {
+      return encap_td( row_content[idx], 'td_' + idx );
+    }
+  });
   return '<tr>' + content.join('') +'</tr>';
 }
 
