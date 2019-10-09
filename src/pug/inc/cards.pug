@@ -29,9 +29,9 @@ include mixins.pug
   +chart_interest_over_time('test topic', ['Valentines Day'])
 
 .cards#test_vector_map
-  +chart_vector_map('test topic', {
+  +chart_vector_map('donald trump heatmap on earth', {
               keyword: 'Donald Trump',
               startTime: '2017-02-01',
               endTime: '2017-02-06',
               resolution: 'COUNTRY'
-            })
+            }, 'world-map')
