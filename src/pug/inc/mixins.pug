@@ -33,39 +33,48 @@ mixin chart_interest_over_time(topic, keywords)
 
 mixin chart_vector_map(topic, params, map_id)
   div(style="width: 100%; height:100%;")
-    h3 #{topic} #{map_id}
+    h3(class="vector_map_title") #{topic} #{map_id}
     div(id=map_id style="width: 100%; height: 100%;")
     script.
       document.addEventListener( "DOMContentLoaded", () => {
         fetch_post_request( {
             q: Q_INTEREST_BY_REGION,
-            param: !{JSON.stringify(params)}
+            param: !{JSON.stringify( params )}
           } )
           .then( res => res.json() )
-          .then( json => {
-            var obj = {};
-            json.default.geoMapData.forEach( x => {
-              obj[ x.geoCode ] = x.value[ 0 ];
+            .then( json => {
+              var obj = {};
+              json.default.geoMapData.forEach( x => {
+                obj[ x.geoCode ] = x.value[ 0 ];
+              } )
+              return obj;
             } )
-            return obj;
-          } )
-          .then( result => {
-            $( function () {
-              $( "#!{map_id}" ).vectorMap( {
-                map: 'world_mill',
-                series: {
-                  regions: [ {
-                    values: result,
-                    scale: [ '#C8EEFF', '#0071A4' ],
-                    normalizeFunction: 'polynomial'
-                  } ]
-                },onRegionTipShow: function ( e, el, code ) {
-                  el.html( el.html() + ' (value - ' + result[ code ] + ')' );
-                }
+            .then( result => {
+              $( function () {
+                var temp_map = $( "#!{map_id}" ).vectorMap( {
+                  map: 'world_mill',
+                  series: {
+                    regions: [ {
+                      values: result,
+                      scale: [ '#C8EEFF', '#0071A4' ],
+                      normalizeFunction: 'polynomial'
+                    } ]
+                  },
+                  onRegionTipShow: function ( e, el, code ) {
+                    el.html( el.html() + ' (value - ' + result[ code ] + ')' );
+                  }
+                } );
+                new ResizeObserver( () => {
+
+                  var map = $('#world-map').vectorMap('get', 'mapObject');
+                  map.updateSize();
+
+                } ).observe( get_ele( '#!{map_id}' ) );
               } );
+
             } );
           } );
-      } );
+
 
 mixin related_queries( params, table_id, max_row)
   div(id=table_id)

@@ -1,16 +1,32 @@
-function extract_title( json_in ) {
+var daily_trends_column = ['rank', 'topic', 'traffic', 'articles'];
+
+function extract_title ( json_in ) {
   console.log( json_in );
   return json_in.trendingSearchesDays[ 0 ].trendingSearches.map( x => x.title );
 }
 
-function render_small_table ( json_in ) {
+function extract_articles_for_daily_trends ( json_in, num_of_link=99) {
+  var out = [];
+  _.range( Math.min(json_in.articles.length, num_of_link) ).forEach( x => {
+    out.push(get_non_google_a_href( json_in.articles[x].title, json_in.articles[x].url ))
+  } )
+    ;
+  return out.join('<br>');
+}
 
+function render_small_table ( json_in ) {
   var content = _.range( json_in.length ).map( idx => {
-    return get_table_row( [idx+1, get_a_href(json_in[idx].title.query, json_in[idx].title.exploreLink)] );
+    return get_table_row( [
+      idx + 1,
+      get_a_href( json_in[idx].title.query, json_in[idx].title.exploreLink ),
+      json_in[idx].formattedTraffic,
+      (json_in[idx].articles.length ? extract_articles_for_daily_trends(json_in[idx],3) : ''
+      )
+    ] );
   } );
 
   return get_table(
-    get_thead( [ 'rank', 'topic' ] ),
+    get_thead( daily_trends_column ),
     content.join( '' )
   );
 }

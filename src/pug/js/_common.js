@@ -47,6 +47,10 @@ function encap_tfoot ( content ) {
   return encap( content, 'tfoot' );
 }
 
+function get_non_google_a_href ( text, href ) {
+  return '<a href="' + href + '" target="_blank">' + text + '</a>';
+}
+
 function get_a_href( text, href ) {
   return '<a href="' + get_google_trend_href( href ) + '" target="_blank">' + text + '</a>';
 }
