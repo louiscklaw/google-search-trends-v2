@@ -75,7 +75,7 @@ function test_interest_by_region() {
         keyword: 'Donald Trump',
         startTime: '2017-02-01',
         endTime: '2017-02-06',
-        resolution: 'CITY'
+        resolution: 'COUNTRY'
       }
     } )
     .then( res => res.text() )

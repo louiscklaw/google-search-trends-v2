@@ -6,9 +6,15 @@
   "directories": {
     "doc": "docs"
   },
+  "nodemonConfig": {
+    "delay": "1000",
+    "ignore": ["test/*", "node_modules/*"]
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "run_debug_api": "set RUN_ENV=DEBUG && nodemon -w src/gcf src/api_server.js"
+    "test_api_server": "set RUN_ENV=DEBUG && nodemon -w src/gcf src/api_server.js",
+    "test_server": "set RUN_ENV=DEBUG && nodemon --delay 3 -w ./ server.js",
+    "gulp" : "find ./src |entr -c -s 'gulp'"
   },
   "repository": {
     "type": "git",
