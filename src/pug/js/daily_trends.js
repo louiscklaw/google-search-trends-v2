@@ -36,16 +36,14 @@ function extract_trending_search ( json_in ) {
 }
 
 
-function daily_trends( sel_in, geo_in, trend_date_in ) {
+function daily_trends( sel_in, params ) {
   fetch_post_request( {
       q: Q_DAILY_TRENDS,
-      param: {
-        trendDate: trend_date_in,
-        geo: geo_in,
-      }
+      param: params
     } )
     .then( res => res.json() )
     .then( json => {
+      console.log( 'abc' );
       get_ele( sel_in ).innerHTML = render_small_table(extract_trending_search(json));
     } );
 }
