@@ -3,7 +3,7 @@
 @import "charts.less";
 @import "vector-map.less";
 
-.hide_active {
+.hide_column {
   display:none;
 }
 
@@ -14,6 +14,10 @@
 .card_enlarge {
   grid-row: 1 / span 3 !important;
   grid-column: 1 / span 3 !important;
+
+  & .hide_column {
+    display: block;
+  }
 }
 
 .trends {

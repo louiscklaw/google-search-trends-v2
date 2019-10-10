@@ -37,26 +37,13 @@ function toggle_enlarge_for_table( card ) {
   } );
 }
 
-
-
 function toggle_enlarge( card ) {
   get_eles( '.cards' ).forEach( element => {
     if ( element.id == card.id ) {
       // enlarge the element
       element.classList.toggle( 'card_enlarge' );
-
-      // element.querySelectorAll( '.hide_column' ).forEach( ele_in => {
-      //   console.log( ele_in.classList );
-      //   ele_in.classList.add( 'hide_active' );
-      // })
-
     } else {
       element.classList.remove( 'card_enlarge' );
-
-      // element.querySelectorAll( '.hide_column' ).forEach( ele_in => {
-      //   ele_in.classList.remove( 'hide_active' );
-      // })
-
     }
   } );
 }

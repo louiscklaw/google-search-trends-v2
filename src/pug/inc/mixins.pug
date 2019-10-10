@@ -1,9 +1,10 @@
 mixin trending_search(topic, geo_in)
-  .cards#trending_search currently empty
-  script.
-    document.addEventListener( "DOMContentLoaded", function () {
-      daily_trends('#trending_search', 'HK', new Date() );
-    } );
+  .card_content
+    #trending_search currently empty
+    script.
+      document.addEventListener( "DOMContentLoaded", function () {
+        daily_trends('#trending_search', 'HK', new Date() );
+      } );
 
 mixin chart_interest_over_time(topic, keywords)
   .card_content
