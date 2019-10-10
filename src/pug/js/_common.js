@@ -39,11 +39,12 @@ function encap_td ( content, td_class="" ) {
   return encap(content,'td', td_class);
 }
 
-function encap_tr ( content, tr_class="" ) {
+function encap_tr ( content, tr_class = "" ) {
   return encap( content, 'tr', tr_class );
 }
 
 function encap_thead ( content ) {
+  console.log( content );
   return encap( content, 'thead' );
 }
 
@@ -60,6 +61,7 @@ function get_a_href( text, href ) {
 }
 
 function get_thead ( cols_name ) {
+  // console.log( cols_name );
   return encap_thead(
     encap_tr(
       _.range( cols_name.length ).map( idx => {
@@ -68,7 +70,7 @@ function get_thead ( cols_name ) {
         } else {
           return encap_td( cols_name[idx] );
         }
-      })
+      }).join('')
     )
   )
   // return encap_thead(encap_tr(cols_name.map( x => encap_td(x) ).join('')));
@@ -96,7 +98,6 @@ function get_table_row ( row_content ) {
 }
 
 function get_table (thead, table_content ) {
-  console.log( get_thead( ['rank', 'topic'] ) );
   return [
     '<table class="table">',
     thead,
