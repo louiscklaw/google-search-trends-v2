@@ -3,7 +3,11 @@
 
 function render_related_queries_table ( data_in, max_row=999 ) {
   var content = _.range( Math.min(data_in.length, max_row) ).map( idx => {
-    return get_table_row([idx+1, data_in[idx][0], data_in[idx][1]])
+    if ( idx > 4 ) {
+      return get_table_row( [idx + 1, data_in[idx][0], data_in[idx][1]], 'hide_row' );
+    } else {
+      return get_table_row( [idx + 1, data_in[idx][0], data_in[idx][1]] );
+    }
   } )
   return get_table(
     get_thead( [ 'rank', 'value', 'queries' ] ),
@@ -26,8 +30,6 @@ function related_queries ( sel_in, param_in, max_row ) {
     } )
     .then( res => res.json() )
     .then( json => {
-      // get_ele( "#"+id_in ).innerHTML = ;
-      // get_ele( sel_in ).innerHTML = render_small_table( extract_trending_search( json ) );
       get_ele( sel_in ).innerHTML = render_related_queries_table(extract_ranked_keyword(json), max_row);
     } );
 }
