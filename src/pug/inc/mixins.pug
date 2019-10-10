@@ -1,10 +1,10 @@
 mixin trending_search(topic, params)
+  - var search_id = 'search_'+Math.round(Math.random()*99999)
   h2= topic
-  //- h3 Math.round(Math.random()*99999)
-  #trending_search_hk currently empty
+  div(id=search_id)
   script.
     document.addEventListener( "DOMContentLoaded", function () {
-      daily_trends('#trending_search_hk',!{JSON.stringify(params)});
+      daily_trends( '#'+ '!{search_id}' ,!{JSON.stringify(params)});
     } );
 
 mixin chart_interest_over_time(topic, params)

@@ -20,22 +20,35 @@ include mixins.pug
 //-   div.chart_container
 //-     canvas#myChart
 
-.cards#trending_search_of_hk
+.cards.trending_search#trending_search_of_hk
   .card_content
     +trending_search('trending search of HK today', {
         trendDate: new Date(),
         geo: 'HK',
       })
 
+.cards.trending_search#trending_search_of_us
+  .card_content
+    +trending_search('trending search of US today', {
+        trendDate: new Date(),
+        geo: 'US',
+      })
 
-.cards#language_trend(category="programming")
+.cards.trending_search#trending_search_of_tw
+  .card_content
+    +trending_search('trending search of TW today', {
+        trendDate: new Date(),
+        geo: 'TW',
+      })
+
+.cards.interest_over_time#language_trend(category="programming")
   .card_content
     +chart_interest_over_time('language trends\(5 years\)', {
               keyword: ['python','PHP','javascript','Dart','Rust'],
               dayBack: 365 * 5,
             })
 
-.cards#test_vector_map
+.cards.vector_map#test_vector_map
   .card_content
     +chart_vector_map('donald trump heatmap on earth', {
                 keyword: 'Donald Trump',
@@ -44,12 +57,12 @@ include mixins.pug
                 resolution: 'COUNTRY'
               }, 'world-map')
 
-.cards#related_queries_1
+.cards.related_queries#related_queries_1
   .card_content
     h3 card_related_queries of 觀塘站
     +related_queries({keyword: '觀塘站'}, 'aaa', 10)
 
-.cards#related_topics_2
+.cards.related_topics#related_topics_2
   .card_content
     h3 card_related_topics of 觀塘站
     +related_topics({keyword: '觀塘站'}, 'aaa1', 10)

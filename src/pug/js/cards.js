@@ -1,12 +1,12 @@
 // cards.js
 
 const CHART_COLORS = [
-  ['rgba(241, 196, 15,1.0)', 'rgba(241, 196, 15,0.1'],
-  ['rgba(230, 126, 34,1.0)', 'rgb(255, 99, 132)'],
-  ['rgba(231, 76, 60,1.0)', 'rgb(255, 99, 132)'],
-  ['rgba(26, 188, 156,1.0)', 'rgb(255, 99, 132)'],
-  ['rgba(52, 152, 219,1.0)', 'rgb(255, 99, 132)'],
-  ['rgba(155, 89, 182,1.0)', 'rgb(255, 99, 132)'],
+  [ 'rgba(241, 196, 15,1.0)', 'rgba(241, 196, 15,0.1' ],
+  [ 'rgba(230, 126, 34,1.0)', 'rgb(255, 99, 132)' ],
+  [ 'rgba(231, 76, 60,1.0)', 'rgb(255, 99, 132)' ],
+  [ 'rgba(26, 188, 156,1.0)', 'rgb(255, 99, 132)' ],
+  [ 'rgba(52, 152, 219,1.0)', 'rgb(255, 99, 132)' ],
+  [ 'rgba(155, 89, 182,1.0)', 'rgb(255, 99, 132)' ],
 
 ];
 
@@ -43,7 +43,8 @@ function toggle_enlarge_for_table( card ) {
   } );
 }
 
-function toggle_enlarge( card ) {
+function toggle_enlarge ( card ) {
+  console.log( card );
   get_eles( '.cards' ).forEach( element => {
     if ( element.id == card.id ) {
       // enlarge the element
@@ -101,8 +102,8 @@ function create_chart( chart_id, keywords_in, data_json ) {
 
         return {
           label: keywords_in[ x ],
-          backgroundColor: CHART_COLORS[x][0].replace('1.0','0.1'),
-          borderColor: CHART_COLORS[x][0],
+          backgroundColor: CHART_COLORS[ x ][ 0 ].replace( '1.0', '0.1' ),
+          borderColor: CHART_COLORS[ x ][ 0 ],
           data: extract_chart_data( data_json, x ),
         }
       } )
@@ -113,11 +114,11 @@ function create_chart( chart_id, keywords_in, data_json ) {
   } );
 }
 
-
-
-
-
-
 document.addEventListener( "DOMContentLoaded", function () {
   add_cards_toggle_enlarge();
 } );
+
+window.onclick = e => {
+  console.log( e.target );
+  console.log( e.target.tagName );
+}
