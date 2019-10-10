@@ -80,7 +80,7 @@ function get_tfoot( cols_name ) {
   return encap_tfoot(encap_tr(cols_name.map( x => encap_td(x) ).join('')));
 }
 
-function get_table_row ( row_content ) {
+function get_table_row ( row_content, row_class='' ) {
 
   // var content = row_cotnent.map( x => encap_td(x,'test') );
   var content = _.range( row_content.length ).map( idx =>{
@@ -94,7 +94,7 @@ function get_table_row ( row_content ) {
       return encap_td( row_content[idx], 'td_' + idx );
     }
   });
-  return '<tr>' + content.join('') +'</tr>';
+  return encap_tr(content.join(''), row_class);
 }
 
 function get_table (thead, table_content ) {
@@ -104,4 +104,8 @@ function get_table (thead, table_content ) {
     table_content,
     '</table>'
   ].join( '' );
+}
+
+function helloworld_date () {
+  return new Date();
 }

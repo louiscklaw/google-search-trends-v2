@@ -52,10 +52,24 @@ function send_required_func_not_found( req, res ) {
 function process_search_param( param_in ) {
   var output_d = {};
   Object.keys( param_in ).forEach( x => {
-    if ( [ 'startTime', 'endTime' ].indexOf( x ) > -1 ) {
-      output_d[ x ] = new Date( param_in[ x ] );
-    } else {
-      output_d[ x ] = param_in[ x ];
+    switch ( x ) {
+      case 'dayBack':
+        console.log( 'dayBack found' );
+        var n = new Date();
+        var startTime = n.getDate() - parseInt(param_in[x]);
+        n.setDate( startTime );
+        output_d['startTime'] = n;
+        output_d['endTime'] = new Date();
+        break;
+      case 'startTime':
+        output_d[x] = new Date( param_in[x] );
+        break;
+      case 'endTime':
+        output_d[x] = new Date( param_in[x] );
+        break;
+      default:
+        output_d[ x ] = param_in[ x ];
+        break;
     }
   } )
   return output_d;
@@ -69,6 +83,7 @@ function handle_post_trends( req, res ) {
   // console.log( req.body.trends );
 
   if ( found_in_key( trends_solver, req.body.q ) ) {
+    console.log( process_search_param( req.body.param ) );
     trends_solver[req.body.q]( process_search_param(req.body.param) )
       .then( result => res.send( result ) );
 

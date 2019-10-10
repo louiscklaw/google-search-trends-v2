@@ -20,26 +20,65 @@ include mixins.pug
 //-   div.chart_container
 //-     canvas#myChart
 
-.cards#trending_search_of_hk trending_search
-  +trending_search('trending search of HK', 'HK')
+.cards#trending_search_of_hk
+  .card_content
+    +trending_search('trending search of HK today', {
+        trendDate: new Date(),
+        geo: 'HK',
+      })
 
-.cards#test_chart
-  +chart_interest_over_time('interest over time', ['Valentines Day'])
+
+.cards#language_trend(category="programming")
+  .card_content
+    +chart_interest_over_time('language trends\(5 years\)', {
+              keyword: ['python','PHP','javascript','Dart','Rust'],
+              dayBack: 365 * 5,
+            })
 
 .cards#test_vector_map
-  +chart_vector_map('donald trump heatmap on earth', {
-              keyword: 'Donald Trump',
-              startTime: '2017-02-01',
-              endTime: '2017-02-06',
-              resolution: 'COUNTRY'
-            }, 'world-map')
+  .card_content
+    +chart_vector_map('donald trump heatmap on earth', {
+                keyword: 'Donald Trump',
+                startTime: '2017-02-01',
+                endTime: '2017-02-06',
+                resolution: 'COUNTRY'
+              }, 'world-map')
 
 .cards#related_queries_1
-  div
+  .card_content
     h3 card_related_queries of 觀塘站
     +related_queries({keyword: '觀塘站'}, 'aaa', 5)
 
 .cards#related_topics_2
-  div
+  .card_content
     h3 card_related_topics of 觀塘站
     +related_topics({keyword: '觀塘站'}, 'aaa1', 5)
+
+.cards#test_table
+  .card_content
+    h2 test table
+    .
+      <table class="test_table" border="1" style="width: 100%; height: 20px;">
+        <thead>
+          <tr>
+            <td>h1</td>
+            <td>h2</td>
+            <td class="hide_column_test">h3</td>
+          </tr>
+        </thead>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+          <td class="hide_column_test">3</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>5</td>
+          <td class="hide_column_test">6</td>
+        </tr>
+        <tr class="hide_row_test">
+          <td>4</td>
+          <td>5</td>
+          <td class="hide_column_test">6</td>
+        </tr>
+      </table>

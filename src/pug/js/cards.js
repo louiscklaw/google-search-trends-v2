@@ -1,7 +1,13 @@
 // cards.js
 
 const CHART_COLORS = [
-  [ 'rgb(255, 99, 132)', 'rgb(255, 99, 132)' ]
+  ['rgba(241, 196, 15,1.0)', 'rgba(241, 196, 15,0.1'],
+  ['rgba(230, 126, 34,1.0)', 'rgb(255, 99, 132)'],
+  ['rgba(231, 76, 60,1.0)', 'rgb(255, 99, 132)'],
+  ['rgba(26, 188, 156,1.0)', 'rgb(255, 99, 132)'],
+  ['rgba(52, 152, 219,1.0)', 'rgb(255, 99, 132)'],
+  ['rgba(155, 89, 182,1.0)', 'rgb(255, 99, 132)'],
+
 ];
 
 function get_backgrouncColor( color_settings_in ) {
@@ -73,17 +79,17 @@ function extract_chart_data( json_in, idx = 0 ) {
 
 }
 
-function translate_to_charts_js_data( json_in, label ) {
-  return {
-    labels: extract_chart_label( json_in ),
-    datasets: [ {
-      label: 'hardcode',
-      // backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgb(255, 99, 132)',
-      data: extract_chart_data( json_in ),
-    } ]
-  };
-}
+// function translate_to_charts_js_data( json_in, label ) {
+//   return {
+//     labels: extract_chart_label( json_in ),
+//     datasets: [ {
+//       label: 'hardcode',
+//       // backgroundColor: 'rgb(255, 99, 132)',
+//       borderColor: 'rgb(255, 99, 132)',
+//       data: extract_chart_data( json_in ),
+//     } ]
+//   };
+// }
 
 function create_chart( chart_id, keywords_in, data_json ) {
   var ctx = document.getElementById( chart_id ).getContext( '2d' );
@@ -92,15 +98,18 @@ function create_chart( chart_id, keywords_in, data_json ) {
     data: {
       labels: extract_chart_label( data_json ),
       datasets: _.range( keywords_in.length ).map( x => {
+
         return {
           label: keywords_in[ x ],
-          // backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
-          data: extract_chart_data( data_json ),
+          backgroundColor: CHART_COLORS[x][0].replace('1.0','0.1'),
+          borderColor: CHART_COLORS[x][0],
+          data: extract_chart_data( data_json, x ),
         }
       } )
     },
-    options: {}
+    options: {
+      maintainAspectRatio: false
+    }
   } );
 }
 

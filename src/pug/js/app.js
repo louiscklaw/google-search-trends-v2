@@ -20,8 +20,9 @@ function update_highlight_button( hash_in ) {
       } else {
         x.classList.remove( 'nav_button_highlighted' );
       }
-
     }
+
+
   } )
 }
 
@@ -29,6 +30,7 @@ function listen_to_hash_change() {
   window.addEventListener( 'hashchange', function () {
     // clear_all_highlight_button();
     update_highlight_button( window.location.hash );
+    refresh_cards_size(window.location.hash);
   } );
 }
 
@@ -39,6 +41,32 @@ function init_grid_animation() {
     duration: 600
   } );
 
+}
+
+function process_topic_graph ( ele_in ) {
+  ele_in.classList.remove( 'grid_widget' );
+  ele_in.classList.add( 'grid_topic_graph' );
+}
+
+function process_grid_widget ( ele_in ) {
+  ele_in.classList.remove( 'grid_topic_graph' );
+  ele_in.classList.add( 'grid_widget' );
+}
+
+function refresh_cards_size( hash_in ) {
+  console.log( hash_in );
+  get_eles( '.cards' ).forEach( ele_card => {
+    if ( ele_card.classList.contains( hash_in.split( '#' )[1] ) ) {
+      if ( ele_card.id == 'language_trend' ) {
+        process_topic_graph( ele_card );
+      } else {
+        process_grid_widget( ele_card );
+      }
+    } else {
+      process_grid_widget( ele_card );
+    }
+
+  } )
 }
 
 document.addEventListener( "DOMContentLoaded", function () {
@@ -54,5 +82,7 @@ document.addEventListener( "DOMContentLoaded", function () {
 
   listen_to_hash_change();
   init_grid_animation();
+
+
 
 } );

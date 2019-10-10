@@ -8,13 +8,16 @@
   },
   "nodemonConfig": {
     "delay": "1000",
-    "ignore": ["test/*", "node_modules/*"]
+    "ignore": [
+      "test/*",
+      "node_modules/*"
+    ]
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "test_api_server": "set RUN_ENV=DEBUG && nodemon -w src/gcf src/api_server.js",
     "test_server": "set RUN_ENV=DEBUG && nodemon --delay 3 -w ./ server.js",
-    "gulp" : "find ./src |entr -c -s 'gulp'"
+    "gulp": "find ./src |entr -c -s 'gulp'"
   },
   "repository": {
     "type": "git",
@@ -38,6 +41,7 @@
     "gulp-rename": "^1.4.0"
   },
   "dependencies": {
-    "google-trends-api": "^4.9.0"
+    "google-trends-api": "^4.9.0",
+    "moment": "^2.24.0"
   }
 }

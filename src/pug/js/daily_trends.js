@@ -15,15 +15,24 @@ function extract_articles_for_daily_trends ( json_in, num_of_link=99) {
 }
 
 function render_small_table ( json_in ) {
-  var content = _.range( json_in.length ).map( idx => {
-    return get_table_row( ['a', 'b', 'c', 'd'] );
-    // return get_table_row( [
-    //   idx + 1,
-    //   get_a_href( json_in[idx].title.query, json_in[idx].title.exploreLink ),
-    //   json_in[idx].formattedTraffic,
-    //   (json_in[idx].articles.length ? extract_articles_for_daily_trends(json_in[idx],3) : ''
-    //   )
-    // ] );
+  var content = _.range( Math.min(json_in.length, 10) ).map( idx => {
+    if ( idx > 4 ) {
+      return get_table_row( [
+        idx + 1,
+        get_a_href( json_in[idx].title.query, json_in[idx].title.exploreLink ),
+        json_in[idx].formattedTraffic,
+        ( json_in[idx].articles.length ? extract_articles_for_daily_trends( json_in[idx], 3 ) : ''
+        )
+      ], 'hide_row' );
+    } else {
+      return get_table_row( [
+        idx + 1,
+        get_a_href( json_in[idx].title.query, json_in[idx].title.exploreLink ),
+        json_in[idx].formattedTraffic,
+        ( json_in[idx].articles.length ? extract_articles_for_daily_trends( json_in[idx], 3 ) : ''
+        )
+      ] );
+    };
   } );
 
   return get_table(
@@ -45,6 +54,5 @@ function daily_trends( sel_in, params ) {
     .then( res => res.json() )
     .then( json => {
       get_ele( sel_in ).innerHTML = render_small_table(extract_trending_search(json));
-
     } );
 }

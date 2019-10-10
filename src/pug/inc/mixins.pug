@@ -1,83 +1,77 @@
-mixin trending_search(topic, geo_in)
-  .card_content
-    #trending_search_hk currently empty
-    script.
-      document.addEventListener( "DOMContentLoaded", function () {
-        daily_trends('#trending_search_hk',{
-          trendDate: new Date(),
-          geo: 'HK',
-        });
-      } );
+mixin trending_search(topic, params)
+  h2= topic
+  //- h3 Math.round(Math.random()*99999)
+  #trending_search_hk currently empty
+  script.
+    document.addEventListener( "DOMContentLoaded", function () {
+      daily_trends('#trending_search_hk',!{JSON.stringify(params)});
+    } );
 
-mixin chart_interest_over_time(topic, keywords)
-  .card_content
-    h2= topic
-    #chart_container
-    script.
-      document.addEventListener( "DOMContentLoaded", function () {
-        var _chart_id = 'test_chart_id';
-        keywords_to_search = [ 'Valentines Day' ];
-        fetch_post_request( {
-            q: Q_INTEREST_OVER_TIME,
-            param: {
-              keyword: keywords_to_search
-            }
-          } )
-          .then( res => res.text() )
-          .then( text => JSON.parse( text ) )
-          .then( json => {
-            get_ele( '#chart_container' ).innerHTML = get_chartjs_canvas_html( _chart_id );
-            return json;
-          } )
-          .then( ( json ) => {
-            create_chart( _chart_id, keywords_to_search, json );
-          } );
-      } );
+mixin chart_interest_over_time(topic, params)
+  h2= topic
+  .chart_container
+  script.
+    document.addEventListener( "DOMContentLoaded", function () {
+      var _chart_id = 'test_chart_id';
+      //- keywords_to_search = [ 'Valentines Day' ];
+      fetch_post_request( {
+          q: Q_INTEREST_OVER_TIME,
+          param: !{JSON.stringify(params)}
+        } )
+        .then( res => res.json() )
+        .then( json => {
+          get_ele( '.chart_container' ).innerHTML = get_chartjs_canvas_html( _chart_id );
+          return json;
+        } )
+        .then( ( json ) => {
+          create_chart( _chart_id, !{JSON.stringify(params.keyword)} , json );
+        } );
+    } );
 
 
 mixin chart_vector_map(topic, params, map_id)
-  div(style="width: 100%; height:100%;")
-    h3(class="vector_map_title") #{topic} #{map_id}
-    div(id=map_id style="width: 100%; height: 100%;")
-    script.
-      document.addEventListener( "DOMContentLoaded", () => {
-        fetch_post_request( {
-            q: Q_INTEREST_BY_REGION,
-            param: !{JSON.stringify( params )}
-          } )
-          .then( res => res.json() )
-            .then( json => {
-              var obj = {};
-              json.default.geoMapData.forEach( x => {
-                obj[ x.geoCode ] = x.value[ 0 ];
-              } )
-              return obj;
+  h3(class="vector_map_title") #{topic} #{map_id}
+  div(id=map_id style="width: 100%; height: 100%;")
+  script.
+    document.addEventListener( "DOMContentLoaded", () => {
+      fetch_post_request( {
+          q: Q_INTEREST_BY_REGION,
+          param: !{JSON.stringify( params )}
+        } )
+        .then( res => res.json() )
+          .then( json => {
+            var obj = {};
+            json.default.geoMapData.forEach( x => {
+              obj[ x.geoCode ] = x.value[ 0 ];
             } )
-            .then( result => {
-              $( function () {
-                var temp_map = $( "#!{map_id}" ).vectorMap( {
-                  map: 'world_mill',
-                  series: {
-                    regions: [ {
-                      values: result,
-                      scale: [ '#C8EEFF', '#0071A4' ],
-                      normalizeFunction: 'polynomial'
-                    } ]
-                  },
-                  onRegionTipShow: function ( e, el, code ) {
-                    el.html( el.html() + ' (value - ' + result[ code ] + ')' );
-                  }
-                } );
-                new ResizeObserver( () => {
-
-                  var map = $('#world-map').vectorMap('get', 'mapObject');
-                  map.updateSize();
-
-                } ).observe( get_ele( '#!{map_id}' ) );
+            return obj;
+          } )
+          .then( result => {
+            $( function () {
+              var temp_map = $( "#!{map_id}" ).vectorMap( {
+                map: 'world_mill',
+                backgroundColor: 'rgba(189, 195, 199,1.0)',
+                series: {
+                  regions: [ {
+                    values: result,
+                    scale: [ '#C8EEFF', '#0071A4' ],
+                    normalizeFunction: 'polynomial'
+                  } ]
+                },
+                onRegionTipShow: function ( e, el, code ) {
+                  el.html( el.html() + ' (value - ' + result[ code ] + ')' );
+                }
               } );
+              new ResizeObserver( () => {
 
+                var map = $("#!{map_id}").vectorMap('get', 'mapObject');
+                map.updateSize();
+
+              } ).observe( get_ele( '#!{map_id}' ) );
             } );
+
           } );
+        } );
 
 
 mixin related_queries( params, table_id, max_row)
