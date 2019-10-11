@@ -55,6 +55,7 @@ function process_grid_widget ( ele_in ) {
 }
 
 function make_topic_card ( sel_in ) {
+  get_ele( sel_in ).classList.remove( 'card_enlarge' );
   get_ele( sel_in ).classList.add( 'topic_card' );
 }
 
@@ -145,5 +146,7 @@ document.addEventListener( "DOMContentLoaded", function () {
   }
   // init_click_monitor();
   listen_to_hash_change();
-  init_grid_animation();
+
+  // init_grid_animation();
+
 } );
