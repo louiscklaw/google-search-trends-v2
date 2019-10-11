@@ -3,13 +3,13 @@ const path = require( 'path' );
 const express = require( 'express' );
 const app = express();
 
-const gcf_routes = require( path.join( __dirname, 'gcf/routes.js' ) );
+const gcf_index = require( path.join( __dirname, 'gcf/index.js' ) );
 
 app.use(express.urlencoded());
 app.use(express.json());
 
 app.all( '/', function ( req, res ) {
-  gcf_routes.main_routes( req, res );
+  gcf_index.main_routes( req, res );
 } )
 
 var server = app.listen( 8082, function () {

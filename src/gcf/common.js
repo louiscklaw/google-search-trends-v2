@@ -1,6 +1,6 @@
 
 var path = require( 'path' );
-var vars = require( path.join( '..', 'vars.js' ) );
+var vars = require( 'vars.js' );
 
 module.exports.pre_print = ( text_in ) => {
   return '<pre>' + text_in + '</pre>';
