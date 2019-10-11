@@ -4,24 +4,24 @@ const fs = require( 'fs' );
 
 const vars = require( path.join(__dirname,'vars.js') );
 
-// const common = require( path.join( __dirname, 'common.js' ) );
+const common = require( path.join( __dirname, 'common.js' ) );
 
-// const gcf_util = require( path.join( __dirname, 'gcf_util.js' ) );
-// const chartjs_util = require( path.join( __dirname, 'chartjs_util.js' ) );
+const gcf_util = require( path.join( __dirname, 'gcf_util.js' ) );
+const chartjs_util = require( path.join( __dirname, 'chartjs_util.js' ) );
 
-// const req_solver = {
-//   'OPTIONS': handle_option_call,
-//   'GET': handle_get_call,
-//   'POST': handle_post_call
-// }
+const req_solver = {
+  'OPTIONS': handle_option_call,
+  'GET': handle_get_call,
+  'POST': handle_post_call
+}
 
-// const trends_solver = {};
-// trends_solver[vars.Q_DAILY_TRENDS] = gcf_util.dailyTrends;
-// trends_solver[vars.Q_INTEREST_OVER_TIME] = gcf_util.interestOverTime;
-// trends_solver[vars.Q_INTEREST_BY_REGION] = gcf_util.interestByRegion;
-// // trends_solver[vars.Q_REAL_TIME_TRENDS] = gcf_util.re
-// trends_solver[vars.Q_RELATED_QUERIES] = gcf_util.relatedQueries
-// trends_solver[vars.Q_RELATED_TOPICS] = gcf_util.relatedTopics;
+const trends_solver = {};
+trends_solver[vars.Q_DAILY_TRENDS] = gcf_util.dailyTrends;
+trends_solver[vars.Q_INTEREST_OVER_TIME] = gcf_util.interestOverTime;
+trends_solver[vars.Q_INTEREST_BY_REGION] = gcf_util.interestByRegion;
+// trends_solver[vars.Q_REAL_TIME_TRENDS] = gcf_util.re
+trends_solver[vars.Q_RELATED_QUERIES] = gcf_util.relatedQueries
+trends_solver[vars.Q_RELATED_TOPICS] = gcf_util.relatedTopics;
 
 
 // function handle_option_call( req, res ) {
