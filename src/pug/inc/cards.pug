@@ -59,13 +59,11 @@ include mixins.pug
 
 .cards.related_queries#related_queries_1
   .card_content
-    h3 card_related_queries of 觀塘站
-    +related_queries({keyword: '觀塘站'}, 'aaa', 10)
+    +related_queries('card_related_queries of 觀塘站',{keyword: '觀塘站'}, 'aaa', 10)
 
 .cards.related_topics#related_topics_2
   .card_content
-    h3 card_related_topics of 觀塘站
-    +related_topics({keyword: '觀塘站'}, 'aaa1', 10)
+    +related_topics('card_related_topics of 觀塘站',{keyword: '觀塘站'}, 'aaa1', 10)
 
 .cards#test_table
   .card_content

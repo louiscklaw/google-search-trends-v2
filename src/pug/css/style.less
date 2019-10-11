@@ -1,39 +1,62 @@
-
 @import "bulma_cust.less";
 @import "charts.less";
 @import "vector-map.less";
 @import "grid.less";
 @import "programming.less";
 
+.card_body {
+  top: -26px;
+  position: relative;
+  height: 100%;
+}
 
-.card_content{
+.card_topic {
+  top: -26px;
+  position: relative;
+  text-align: center;
+  z-index: 90;
+}
+
+.toggle_enlarge_button{
+
+  height: 20px;
+  z-index:99;
+}
+
+.button_container{
+  width: 100%;
+  text-align: right;
+}
+
+.card_content {
   width: 100%;
   height: 100%;
-  & table{
+
+  & table {
     font-size: 12px;
   }
 }
 
 .hide_column {
-  display:none;
+  display: none;
 }
 
 .hide_row {
-  display:none;
+  display: none;
 }
 
 .relatedTopics {
   width: 100%;
 }
 
-.test_table{
-  & .hide_column_test{
+.test_table {
+  & .hide_column_test {
     visibility: hidden;
     display: none;
     // border: none;
   }
 
-  & .hide_row_test{
+  & .hide_row_test {
     visibility: hidden;
     display: none;
   }
@@ -48,17 +71,17 @@
     display: table-cell;
   }
 
-  & .hide_row{
+  & .hide_row {
     visibility: visible;
     display: table-row;
   }
 
-  & .hide_column_test{
+  & .hide_column_test {
     visibility: visible;
     display: table-cell;
   }
 
-  & .hide_row_test{
+  & .hide_row_test {
     visibility: visible;
     display: table-row;
   }
@@ -72,7 +95,7 @@
   width: 100%;
 }
 
-.nav_button{
+.nav_button {
   padding: 10px 10px;
 
   &:hover {
@@ -126,6 +149,8 @@
   // background-color: green;
   width: 100%;
   height: 100%;
+
+  background-color: white;
   color: black;
 }
 

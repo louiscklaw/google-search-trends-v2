@@ -44,30 +44,65 @@ function toggle_enlarge_for_table( card ) {
     }
   } );
 }
+function process_click_to_enlarge() {
+  // only process enlarge when clicking in card_content
 
+  return true;
+}
 
+function check_card_state ( ele_in ) {
+  return ele_in.getAttribute( DATA_WIDGET_STATE );
+}
 
-function toggle_enlarge ( card ) {
-  console.log( click_target_tag_name );
-  if ( ignore_click_tag_name.indexOf( click_target_tag_name ) > -1 ) {
-    console.log( 'i should ignore click' );
+function set_card_state ( ele_in, size ) {
+  ele_in.setAttribute(DATA_WIDGET_STATE, size)
+}
+
+function get_card_by_button ( ele_in ) {
+  return ele_in.parentNode.parentNode.parentNode;
+}
+
+function get_large_card ( button_ele_in ) {
+  get_card_by_button( button_ele_in ).classList.add( 'card_enlarge' );
+}
+
+function get_small_card ( button_ele_in ) {
+  get_card_by_button( button_ele_in ).classList.remove( 'card_enlarge' );
+}
+
+function toggle_enlarge ( ele_in ) {
+  if ( check_card_state( ele_in ) == CARD_STATE_LARGE ) {
+    get_small_card( ele_in );
+    set_card_state( ele_in, CARD_STATE_SMALL );
   } else {
+    get_large_card( ele_in );
+    set_card_state( ele_in, CARD_STATE_LARGE );
+  }
+}
+
+
+function toggle_enlarge1( card ) {
+  console.log( card.parentNode );
+  if ( process_click_to_enlarge() ) {
     get_eles( '.cards' ).forEach( element => {
-      if ( element.id == card.id ) {
+      if ( element.id == card.parentNode.id ) {
         // enlarge the element
-        element.classList.toggle( 'card_enlarge' );
+        element.classList.add( 'card_enlarge' );
+
       } else {
         element.classList.remove( 'card_enlarge' );
       }
     } );
+  } else {
+    console.log( 'i should ignore click' );
+
   }
 }
 
-function add_cards_toggle_enlarge() {
-  get_eles( '.cards' ).forEach( ele => {
-    // ele.onclick = toggle_enlarge;
-    ele.setAttribute( "onclick", "toggle_enlarge(this);" );
-  } )
+function init_cards() {
+  get_eles( '.toggle_enlarge' ).forEach( ele => {
+    ele.setAttribute( DATA_WIDGET_STATE, CARD_STATE_SMALL );
+  } );
 }
 
 function get_chartjs_canvas_html( chart_id ) {
@@ -123,10 +158,5 @@ function create_chart( chart_id, keywords_in, data_json ) {
 }
 
 document.addEventListener( "DOMContentLoaded", function () {
-  add_cards_toggle_enlarge();
+  init_cards();
 } );
-
-window.onclick = e => {
-  console.log( e.target );
-  console.log( e.target.tagName );
-}

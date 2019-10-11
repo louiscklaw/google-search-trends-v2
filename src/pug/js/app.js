@@ -70,11 +70,19 @@ function refresh_cards_size( hash_in ) {
   } )
 }
 
-function init_click_monitor () {
-  window.onclick = e => {
-    click_target_tag_name = e.target.tagName;
-  }
-}
+// function init_click_monitor () {
+//   window.onclick = e => {
+
+
+//     event_target_tag_name = e.target.tagName;
+//     event_target = e.target;
+//     current_target = e.currentTarget;
+
+//     console.log( event_target );
+//     console.log( current_target );
+
+//   }
+// }
 
 document.addEventListener( "DOMContentLoaded", function () {
   // if ( window.location.hash == '' ) {
@@ -86,7 +94,7 @@ document.addEventListener( "DOMContentLoaded", function () {
   } else {
     update_highlight_button( window.location.hash );
   }
-  init_click_monitor();
+  // init_click_monitor();
   listen_to_hash_change();
   init_grid_animation();
 } );
