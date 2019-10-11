@@ -35,12 +35,13 @@ mixin chart_interest_over_time(topic, params)
     } );
 
 
-mixin chart_vector_map(topic, params, map_id)
+mixin chart_vector_map(topic, params)
+  - var _id = 'search_'+Math.round(Math.random()*99999)
   +toggle_enlarge_button
   h2.card_topic= topic
   .card_body
     //- h3(class="vector_map_title") #{topic} #{map_id}
-    div(id=map_id style="width: 100%; height: 100%; position:relative; top:-26px;")
+    div(id=_id style="width: 100%; height: 100%; position:relative; top:-26px;")
     script.
       document.addEventListener( "DOMContentLoaded", () => {
         fetch_post_request( {
@@ -57,7 +58,7 @@ mixin chart_vector_map(topic, params, map_id)
             } )
             .then( result => {
               $( function () {
-                var temp_map = $( "#!{map_id}" ).vectorMap( {
+                var temp_map = $( '#'+'!{_id}' ).vectorMap( {
                   map: 'world_mill',
                   backgroundColor: 'rgba(255, 255, 255,1.0)',
                   series: {
@@ -73,32 +74,34 @@ mixin chart_vector_map(topic, params, map_id)
                 } );
                 new ResizeObserver( () => {
 
-                  var map = $("#!{map_id}").vectorMap('get', 'mapObject');
+                  var map = $("#"+'!{_id}').vectorMap('get', 'mapObject');
                   map.updateSize();
 
-                } ).observe( get_ele( '#!{map_id}' ) );
+                } ).observe( get_ele( '#'+'!{_id}' ) );
               } );
 
             } );
           } );
 
 
-mixin related_queries(topic, params, table_id, max_row)
+mixin related_queries(topic, params, max_row)
+  - var _id = 'search_'+Math.round(Math.random()*99999)
   +toggle_enlarge_button
   h2.card_topic= topic
   .card_body
-    div(id=table_id)
+    div(id=_id)
     script.
       document.addEventListener( "DOMContentLoaded", function () {
-        related_queries( '#!{table_id}', !{JSON.stringify(params)}, '!{max_row}' );
+        related_queries( '#'+'!{_id}', !{JSON.stringify(params)}, '!{max_row}' );
       } );
 
-mixin related_topics(topic, params, table_id, max_row)
+mixin related_topics(topic, params, max_row)
+  - var _id = 'search_'+Math.round(Math.random()*99999)
   +toggle_enlarge_button
   h2.card_topic= topic
   .card_body
-    div(id=table_id)
+    div(id=_id)
     script.
       document.addEventListener( "DOMContentLoaded", function () {
-        related_topics( '#!{table_id}', !{JSON.stringify(params)}, '!{max_row}' );
+        related_topics( '#'+'!{_id}', !{JSON.stringify(params)}, '!{max_row}' );
       } );

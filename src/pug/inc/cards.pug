@@ -48,31 +48,66 @@ include mixins.pug
               dayBack: 365 * 5,
             })
 
-.cards.vector_map#test_vector_map
+.cards.related_queries#related_queries_python(data-card-category="#programming")
   .card_content
-    +chart_vector_map('donald trump heatmap on earth', {
-                keyword: 'Donald Trump',
-                startTime: '2017-02-01',
-                endTime: '2017-02-06',
+    +related_queries('python related queries',{keyword: 'python'}, 10)
+
+.cards.related_topics#related_queries_php(data-card-category="#programming")
+  .card_content
+    +related_queries('PHP related queries',{keyword: 'PHP'}, 10)
+
+.cards.related_queries#related_queries_javascript(data-card-category="#programming")
+  .card_content
+    +related_queries('javascript related queries',{keyword: 'javascript'}, 10)
+
+.cards.related_topics#related_queries_Kotlin(data-card-category="#programming")
+  .card_content
+    +related_queries('Kotlin related queries',{keyword: 'Kotlin'}, 10)
+
+.cards.vector_map(data-card-category="#programming")
+  .card_content
+    +chart_vector_map('python heat on earth', {
+                keyword: 'python',
+                dayBack: 365 * 5,
                 resolution: 'COUNTRY'
               }, 'world-map')
 
-.cards.related_queries#related_queries_python(data-card-category="#programming")
+.cards.vector_map(data-card-category="#programming")
   .card_content
-    +related_queries('python related queries',{keyword: 'python'}, 'aaa', 10)
+    +chart_vector_map('PHP heat on earth', {
+                keyword: 'PHP',
+                dayBack: 365 * 5,
+                resolution: 'COUNTRY'
+              }, 'world-map')
 
-.cards.related_topics#related_topics_2
+.cards.vector_map(data-card-category="#programming")
   .card_content
-    +related_topics('card_related_topics of 觀塘站',{keyword: '觀塘站'}, 'aaa1', 10)
+    +chart_vector_map('javascript heat on earth', {
+                keyword: 'javascript',
+                dayBack: 365 * 5,
+                resolution: 'COUNTRY'
+              }, 'world-map')
 
-.cards.related_topics#related_topics_python
+.cards.vector_map(data-card-category="#programming")
   .card_content
-    +related_topics('card_related_topics of 觀塘站',{keyword: '觀塘站'}, 'aaa1', 10)
+    +chart_vector_map('Kotlin heat on earth', {
+                keyword: 'Kotlin',
+                dayBack: 365 * 5,
+                resolution: 'COUNTRY'
+              }, 'world-map')
 
-.cards.related_topics#related_topics_2
+.cards.vector_map(data-card-category="#programming")
   .card_content
-    +related_topics('card_related_topics of 觀塘站',{keyword: '觀塘站'}, 'aaa1', 10)
+    +chart_vector_map('golang heat on earth', {
+                keyword: 'golang',
+                dayBack: 365 * 5,
+                resolution: 'COUNTRY'
+              }, 'world-map')
 
-.cards.related_topics#related_topics_2
+.cards.vector_map(data-card-category="#programming")
   .card_content
-    +related_topics('card_related_topics of 觀塘站',{keyword: '觀塘站'}, 'aaa1', 10)
+    +chart_vector_map('Rust heat on earth', {
+                keyword: 'Rust',
+                dayBack: 365 * 5,
+                resolution: 'COUNTRY'
+              }, 'world-map')
