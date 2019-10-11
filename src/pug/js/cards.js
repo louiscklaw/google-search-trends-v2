@@ -62,39 +62,36 @@ function get_card_by_button ( ele_in ) {
   return ele_in.parentNode.parentNode.parentNode;
 }
 
-function get_large_card ( button_ele_in ) {
+function change_to_large_card ( button_ele_in ) {
+  set_card_state( button_ele_in, CARD_STATE_LARGE );
   get_card_by_button( button_ele_in ).classList.add( 'card_enlarge' );
 }
 
-function get_small_card ( button_ele_in ) {
+function change_to_small_card ( button_ele_in ) {
+  set_card_state( button_ele_in, CARD_STATE_SMALL );
   get_card_by_button( button_ele_in ).classList.remove( 'card_enlarge' );
+}
+
+function clear_large_card_space () {
+  console.log( get_eles( '.card_enlarge' ).length );
+  if ( get_eles('.card_enlarge').length >0 ) {
+    get_eles( '.card_enlarge button' ).forEach( button_in => {
+      console.log( button_in );
+      change_to_small_card( button_in );
+    }) ;
+  }
 }
 
 function toggle_enlarge ( ele_in ) {
   if ( check_card_state( ele_in ) == CARD_STATE_LARGE ) {
-    get_small_card( ele_in );
-    set_card_state( ele_in, CARD_STATE_SMALL );
+    console.log(ele_in)
+    change_to_small_card( ele_in );
+
   } else {
-    get_large_card( ele_in );
-    set_card_state( ele_in, CARD_STATE_LARGE );
-  }
-}
+    // check if currently a large card found
+    clear_large_card_space();
 
-
-function toggle_enlarge1( card ) {
-  console.log( card.parentNode );
-  if ( process_click_to_enlarge() ) {
-    get_eles( '.cards' ).forEach( element => {
-      if ( element.id == card.parentNode.id ) {
-        // enlarge the element
-        element.classList.add( 'card_enlarge' );
-
-      } else {
-        element.classList.remove( 'card_enlarge' );
-      }
-    } );
-  } else {
-    console.log( 'i should ignore click' );
+    change_to_large_card( ele_in );
 
   }
 }
