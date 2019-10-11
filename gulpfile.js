@@ -30,6 +30,7 @@ function css() {
 function js() {
   return src( [
     'src/pug/js/_const.js',
+    'src/pug/js/_vars.js',
     'src/pug/js/_common.js',
     'src/pug/js/*.js'
     ], {

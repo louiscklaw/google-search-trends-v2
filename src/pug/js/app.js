@@ -1,5 +1,6 @@
 // app.js
 
+
 function highlight_button( sel_in ) {
   console.log( 'highlight_button:' + sel_in );
   get_ele( sel_in ).classList.add( 'nav_button_highlighted' );
@@ -69,6 +70,12 @@ function refresh_cards_size( hash_in ) {
   } )
 }
 
+function init_click_monitor () {
+  window.onclick = e => {
+    click_target_tag_name = e.target.tagName;
+  }
+}
+
 document.addEventListener( "DOMContentLoaded", function () {
   // if ( window.location.hash == '' ) {
   //   console.log( 'windows hash found empty, pointing to default hash' );
@@ -79,10 +86,7 @@ document.addEventListener( "DOMContentLoaded", function () {
   } else {
     update_highlight_button( window.location.hash );
   }
-
+  init_click_monitor();
   listen_to_hash_change();
   init_grid_animation();
-
-
-
 } );

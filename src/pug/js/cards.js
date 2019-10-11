@@ -1,5 +1,7 @@
 // cards.js
 
+
+
 const CHART_COLORS = [
   [ 'rgba(241, 196, 15,1.0)', 'rgba(241, 196, 15,0.1' ],
   [ 'rgba(230, 126, 34,1.0)', 'rgb(255, 99, 132)' ],
@@ -43,16 +45,22 @@ function toggle_enlarge_for_table( card ) {
   } );
 }
 
+
+
 function toggle_enlarge ( card ) {
-  console.log( card );
-  get_eles( '.cards' ).forEach( element => {
-    if ( element.id == card.id ) {
-      // enlarge the element
-      element.classList.toggle( 'card_enlarge' );
-    } else {
-      element.classList.remove( 'card_enlarge' );
-    }
-  } );
+  console.log( click_target_tag_name );
+  if ( ignore_click_tag_name.indexOf( click_target_tag_name ) > -1 ) {
+    console.log( 'i should ignore click' );
+  } else {
+    get_eles( '.cards' ).forEach( element => {
+      if ( element.id == card.id ) {
+        // enlarge the element
+        element.classList.toggle( 'card_enlarge' );
+      } else {
+        element.classList.remove( 'card_enlarge' );
+      }
+    } );
+  }
 }
 
 function add_cards_toggle_enlarge() {
