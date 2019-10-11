@@ -54,20 +54,69 @@ function process_grid_widget ( ele_in ) {
   ele_in.classList.add( 'grid_widget' );
 }
 
-function refresh_cards_size( hash_in ) {
-  console.log( hash_in );
-  get_eles( '.cards' ).forEach( ele_card => {
-    if ( ele_card.classList.contains( hash_in.split( '#' )[1] ) ) {
-      if ( ele_card.id == 'language_trend' ) {
-        process_topic_graph( ele_card );
-      } else {
-        process_grid_widget( ele_card );
-      }
-    } else {
-      process_grid_widget( ele_card );
-    }
+function make_topic_card ( sel_in ) {
+  get_ele( sel_in ).classList.add( 'topic_card' );
+}
 
-  } )
+function remove_topic_card ( sel_in ) {
+  get_eles( sel_in ).forEach( card_ele => {
+    card_ele.classList.remove( 'topic_card' );
+  });
+}
+
+function hide_card (ele_in) {
+  ele_in.classList.add( 'hide_card' );
+}
+
+function show_card (ele_in) {
+  ele_in.classList.remove( 'hide_card' );
+}
+
+function hide_card_by_sel ( sel_in ) {
+  get_ele( sel_in ).classList.add( 'hide_card' );
+}
+
+function show_card_by_sel ( sel_in ) {
+  get_eles( sel_in ).forEach( card_ele => {
+    card_ele.classList.remove( 'hide_card' );
+  })
+}
+
+function show_all_cards () {
+  show_card_by_sel('.cards')
+}
+
+function select_cards_by_category ( cat_wanted_in ) {
+  get_eles( '.cards' ).forEach( card_ele => {
+    if ( get_attr( card_ele, DATA_CARD_CATEGORY ) == cat_wanted_in ) {
+      show_card( card_ele );
+    } else {
+      hide_card( card_ele );
+    }
+  })
+}
+
+var CARD_CATEGORY_SETTINGS = {
+  '#home': () => {
+    remove_topic_card( '.topic_card' );
+    show_all_cards();
+  },
+  '#programming': () => {
+    select_cards_by_category('#programming');
+    make_topic_card( '#language_trend' );
+    console.log(document.querySelectorAll('[data-card-category="#programming"]'))
+  },
+  '#trending_search': () => {
+    select_cards_by_category('#trending_search');
+  }
+};
+
+
+function refresh_cards_size( hash_in ) {
+  // alert( hash_in );
+  if ( Object.keys( CARD_CATEGORY_SETTINGS ).includes( hash_in ) ) {
+    CARD_CATEGORY_SETTINGS[hash_in]();
+  }
 }
 
 // function init_click_monitor () {

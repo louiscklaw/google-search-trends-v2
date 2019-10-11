@@ -51,7 +51,7 @@ function process_click_to_enlarge() {
 }
 
 function check_card_state ( ele_in ) {
-  return ele_in.getAttribute( DATA_WIDGET_STATE );
+  return get_attr( ele_in, DATA_WIDGET_STATE );
 }
 
 function set_card_state ( ele_in, size ) {

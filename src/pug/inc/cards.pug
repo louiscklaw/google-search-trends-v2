@@ -20,28 +20,28 @@ include mixins.pug
 //-   div.chart_container
 //-     canvas#myChart
 
-.cards.trending_search#trending_search_of_hk
+.cards.trending_search#trending_search_of_hk(data-card-category="#trending_search")
   .card_content
     +trending_search('trending search of HK today', {
         trendDate: new Date(),
         geo: 'HK',
       })
 
-.cards.trending_search#trending_search_of_us
+.cards.trending_search#trending_search_of_us(data-card-category="#trending_search")
   .card_content
     +trending_search('trending search of US today', {
         trendDate: new Date(),
         geo: 'US',
       })
 
-.cards.trending_search#trending_search_of_tw
+.cards.trending_search#trending_search_of_tw(data-card-category="#trending_search")
   .card_content
     +trending_search('trending search of TW today', {
         trendDate: new Date(),
         geo: 'TW',
       })
 
-.cards.interest_over_time#language_trend(category="programming")
+.cards.interest_over_time#language_trend(data-card-category="#programming")
   .card_content
     +chart_interest_over_time('language trends\(5 years\)', {
               keyword: ['python','PHP','javascript','Dart','Rust'],

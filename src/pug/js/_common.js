@@ -7,6 +7,10 @@ var ID = function () {
   return '_' + Math.random().toString(36).substr(2, 9);
 };
 
+function get_attr ( ele_in, attr_in ) {
+  return ele_in.getAttribute( attr_in );
+}
+
 function helloworld () {
   alert( 'helloworld' );
 }
