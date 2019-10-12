@@ -11,14 +11,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
-  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="has-navbar-fixed-top">
-  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+  <nav class="navbar is-fixed-top is-transparent" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io">
-        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+      <a class="navbar-item" href="https://www.gstatic.com">
+        <img src="https://www.gstatic.com/images/branding/lockups/1x/lockup_trends_color_142x24dp.png" width="112"
+          height="28">
       </a>
 
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
@@ -74,21 +77,19 @@
             <a class="navbar-item">
               Report an issue
             </a>
+            <!-- 政府統計處 -->
+            <hr class="navbar-divider">
+            <a class="navbar-item">
+              政府統計處
+            </a>
           </div>
         </div>
       </div>
 
       <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary">
-              <strong>Sign up</strong>
-            </a>
-            <a class="button is-light">
-              Log in
-            </a>
-          </div>
-        </div>
+        <a class="navbar-item">
+          GitHub source
+        </a>
       </div>
     </div>
   </nav>
@@ -97,7 +98,153 @@
     <div class="container">
       <div class="columns">
         <div class="column">
-            <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1982_RC01/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"facebook","geo":"US","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"q=facebook&geo=US&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
+          <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1982_RC01/embed_loader.js"></script>
+          <script type="text/javascript">
+            trends.embed.renderExploreWidget( "TIMESERIES", {
+              "comparisonItem": [ {
+                "keyword": "facebook",
+                "geo": "US",
+                "time": "today 12-m"
+              } ],
+              "category": 0,
+              "property": ""
+            }, {
+              "exploreQuery": "q=facebook&geo=US&date=today 12-m",
+              "guestPath": "https://trends.google.com:443/trends/embed/"
+            } );
+          </script>
+        </div>
+        <div class="column">
+          <div class="test" style="width: 100%; height: 100%; background-color: red;">
+
+
+          </div>
+        </div>
+        <div class="column is-one-quarter">
+          <div class="chart_container" style="width: 100%; height: 100%;">
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
+        <div class="column">
+          <div class="cards related_topics" id="related_queries_php" data-card-category="#programming">
+            <div class="card_content">
+              <h2 class="card_topic">PHP related queries</h2>
+              <div class="card_body">
+                <div id="search_60686">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <td>rank</td>
+                        <td>value</td>
+                        <td>queries</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="td_0">1</td>
+                        <td class="td_1">100</td>
+                        <td class="td_2"><a
+                            href="https://trends.google.com/trends/explore?q=php+mysql&amp;date=2004-01-1+2019-10-11"
+                            target="_blank">php mysql</a></td>
+                      </tr>
+                      <tr>
+                        <td class="td_0">2</td>
+                        <td class="td_1">98</td>
+                        <td class="td_2"><a
+                            href="https://trends.google.com/trends/explore?q=mysql&amp;date=2004-01-1+2019-10-11"
+                            target="_blank">mysql</a></td>
+                      </tr>
+                      <tr>
+                        <td class="td_0">3</td>
+                        <td class="td_1">74</td>
+                        <td class="td_2"><a
+                            href="https://trends.google.com/trends/explore?q=php+array&amp;date=2004-01-1+2019-10-11"
+                            target="_blank">php array</a></td>
+                      </tr>
+                      <tr>
+                        <td class="td_0">4</td>
+                        <td class="td_1">68</td>
+                        <td class="td_2"><a
+                            href="https://trends.google.com/trends/explore?q=html&amp;date=2004-01-1+2019-10-11"
+                            target="_blank">html</a></td>
+                      </tr>
+                      <tr>
+                        <td class="td_0">5</td>
+                        <td class="td_1">68</td>
+                        <td class="td_2"><a
+                            href="https://trends.google.com/trends/explore?q=php+for&amp;date=2004-01-1+2019-10-11"
+                            target="_blank">php for</a></td>
+                      </tr>
+                      <tr class="hide_row">
+                        <td class="td_0">6</td>
+                        <td class="td_1">66</td>
+                        <td class="td_2"><a
+                            href="https://trends.google.com/trends/explore?q=php+file&amp;date=2004-01-1+2019-10-11"
+                            target="_blank">php file</a></td>
+                      </tr>
+                      <tr class="hide_row">
+                        <td class="td_0">7</td>
+                        <td class="td_1">61</td>
+                        <td class="td_2"><a
+                            href="https://trends.google.com/trends/explore?q=get+php&amp;date=2004-01-1+2019-10-11"
+                            target="_blank">get php</a></td>
+                      </tr>
+                      <tr class="hide_row">
+                        <td class="td_0">8</td>
+                        <td class="td_1">46</td>
+                        <td class="td_2"><a
+                            href="https://trends.google.com/trends/explore?q=php+string&amp;date=2004-01-1+2019-10-11"
+                            target="_blank">php string</a></td>
+                      </tr>
+                      <tr class="hide_row">
+                        <td class="td_0">9</td>
+                        <td class="td_1">43</td>
+                        <td class="td_2"><a
+                            href="https://trends.google.com/trends/explore?q=php+download&amp;date=2004-01-1+2019-10-11"
+                            target="_blank">php download</a></td>
+                      </tr>
+                      <tr class="hide_row">
+                        <td class="td_0">10</td>
+                        <td class="td_1">42</td>
+                        <td class="td_2"><a
+                            href="https://trends.google.com/trends/explore?q=php+code&amp;date=2004-01-1+2019-10-11"
+                            target="_blank">php code</a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <script>
+                  document.addEventListener( "DOMContentLoaded", function () {
+                    related_queries( '#' + 'search_60686', {
+                      "keyword": "PHP"
+                    }, '10' );
+                  } );
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1982_RC01/embed_loader.js"></script>
+          <script type="text/javascript">
+            trends.embed.renderExploreWidget( "TIMESERIES", {
+              "comparisonItem": [ {
+                "keyword": "facebook",
+                "geo": "US",
+                "time": "today 12-m"
+              } ],
+              "category": 0,
+              "property": ""
+            }, {
+              "exploreQuery": "q=facebook&geo=US&date=today 12-m",
+              "guestPath": "https://trends.google.com:443/trends/embed/"
+            } );
+          </script>
         </div>
         <div class="column">
           Second column
@@ -112,52 +259,89 @@
 
     </div>
     <div class="container">
-        <div class="columns">
-          <div class="column">
-              <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1982_RC01/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"facebook","geo":"US","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"q=facebook&geo=US&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
-          </div>
-          <div class="column">
-            Second column
-          </div>
-          <div class="column">
-            Third column
-          </div>
-          <div class="column">
-            Fourth column
-          </div>
+      <div class="columns">
+        <div class="column">
+          <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1982_RC01/embed_loader.js"></script>
+          <script type="text/javascript">
+            trends.embed.renderExploreWidget( "TIMESERIES", {
+              "comparisonItem": [ {
+                "keyword": "facebook",
+                "geo": "US",
+                "time": "today 12-m"
+              } ],
+              "category": 0,
+              "property": ""
+            }, {
+              "exploreQuery": "q=facebook&geo=US&date=today 12-m",
+              "guestPath": "https://trends.google.com:443/trends/embed/"
+            } );
+          </script>
         </div>
-
+        <div class="column">
+          test column
+        </div>
+        <div class="column">
+          Third column
+        </div>
+        <div class="column">
+          Fourth column
+        </div>
       </div>
-      <div class="container">
-          <div class="columns">
-            <div class="column">
-                <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1982_RC01/embed_loader.js"></script> <script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", {"comparisonItem":[{"keyword":"facebook","geo":"US","time":"today 12-m"}],"category":0,"property":""}, {"exploreQuery":"q=facebook&geo=US&date=today 12-m","guestPath":"https://trends.google.com:443/trends/embed/"}); </script>
-            </div>
-            <div class="column">
-              Second column
-            </div>
-            <div class="column">
-              Third column
-            </div>
-            <div class="column">
-              Fourth column
-            </div>
-          </div>
 
-        </div>
-  </section>
-
-
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-        Hello World
-      </h1>
-      <p class="subtitle">
-        My first website with <strong>Bulma</strong>!
-      </p>
     </div>
   </section>
+
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+      </p>
+    </div>
+  </footer>
+  <script>
+    var ctx = document.getElementById( 'myChart' ).getContext( '2d' );
+    var myChart = new Chart( ctx, {
+      type: 'bar',
+      data: {
+        labels: [ 'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange' ],
+        datasets: [ {
+          label: '# of Votes',
+          data: [ 12, 19, 3, 5, 2, 3 ],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+        } ]
+      },
+      options: {
+        scales: {
+          yAxes: [ {
+            ticks: {
+              beginAtZero: true
+            }
+          } ]
+        },
+        maintainAspectRatio: false
+
+      }
+    } );
+  </script>
 
 </body>
 

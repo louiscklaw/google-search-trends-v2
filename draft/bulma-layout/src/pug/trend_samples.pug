@@ -1,0 +1,182 @@
+
+mixin google_trend_timeseries
+  .
+    <script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1982_RC01/embed_loader.js"></script>
+    <script type="text/javascript">
+      trends.embed.renderExploreWidget( "TIMESERIES", {
+        "comparisonItem": [ {
+          "keyword": "facebook",
+          "geo": "US",
+          "time": "today 12-m"
+        } ],
+        "category": 0,
+        "property": ""
+      }, {
+        "exploreQuery": "q=facebook&geo=US&date=today 12-m",
+        "guestPath": "https://trends.google.com:443/trends/embed/"
+      } );
+    </script>
+
+mixin chartjs_sample2
+  div.hellworld
+
+mixin map_sample
+  .
+    <h3> map title </h3>
+    <div id="world-map1" style="height: 100%; width:100%;"></div>
+    <script>
+      $( function () {
+        $( '#world-map1' ).vectorMap( {
+          map: 'world_mill',
+          backgroundColor: "#bdc3c7"
+        } );
+      } );
+    </script>
+
+
+mixin vectormap_sample
+  .cards
+    .map_container
+      +map_sample
+      +sample_table([1,2,3])
+
+mixin chart
+  .
+    <h3> chart title </h3>
+    <div class="chart_container" >
+      <canvas id="myChart"></canvas>
+    </div>
+    <script>
+      var option_settings = {
+          scales: {
+            yAxes: [ {
+              ticks: {
+                beginAtZero: true
+              }
+            } ]
+          },
+          maintainAspectRatio: false
+          };
+
+      var data_input = {
+          labels: [ 'Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange' ],
+          datasets: [ {
+            lineTension: 0,
+            label: '# of Votes',
+            data: [ 12, 19, 3, 5, 2, 3 ],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 1
+          } ],
+        };
+      var ctx = document.getElementById( 'myChart' ).getContext( '2d' );
+      var myChart = new Chart( ctx, {
+        type: 'line',
+        data: data_input,
+        options: option_settings,
+        }
+      );
+    </script>
+
+mixin sample_table(num_data_row)
+  .table_container
+    h3 table topics
+    table.table
+      thead
+        tr
+          td name1
+          td name2
+          td name3
+          td name4
+          td name5
+      tfoot
+      tbody
+      each val in num_data_row
+        tr
+          td value1
+          td value2
+          td value3
+          td value4
+          td value5
+
+mixin chartjs_sample
+  .cards(style="width: 100%; height: 100%;")
+    +chart
+    +sample_table([1,2,3])
+
+mixin related_queries_sample
+  .
+    <div class="cards related_topics" id="related_queries_php" data-card-category="#programming">
+      <div class="card_content">
+        <h2 class="card_topic">PHP related queries</h2>
+        <div class="card_body">
+          <div id="search_60686">
+            <table class="table">
+              <thead>
+                <tr>
+                  <td>rank</td>
+                  <td>value</td>
+                  <td>queries</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="td_0">1</td>
+                  <td class="td_1">100</td>
+                  <td class="td_2"><a href="https://trends.google.com/trends/explore?q=php+mysql&amp;date=2004-01-1+2019-10-11" target="_blank">php mysql</a></td>
+                </tr>
+                <tr>
+                  <td class="td_0">2</td>
+                  <td class="td_1">98</td>
+                  <td class="td_2"><a href="https://trends.google.com/trends/explore?q=mysql&amp;date=2004-01-1+2019-10-11" target="_blank">mysql</a></td>
+                </tr>
+                <tr>
+                  <td class="td_0">3</td>
+                  <td class="td_1">74</td>
+                  <td class="td_2"><a href="https://trends.google.com/trends/explore?q=php+array&amp;date=2004-01-1+2019-10-11" target="_blank">php array</a></td>
+                </tr>
+                <tr>
+                  <td class="td_0">4</td>
+                  <td class="td_1">68</td>
+                  <td class="td_2"><a href="https://trends.google.com/trends/explore?q=html&amp;date=2004-01-1+2019-10-11" target="_blank">html</a></td>
+                </tr>
+                <tr>
+                  <td class="td_0">5</td>
+                  <td class="td_1">68</td>
+                  <td class="td_2"><a href="https://trends.google.com/trends/explore?q=php+for&amp;date=2004-01-1+2019-10-11" target="_blank">php for</a></td>
+                </tr>
+                <tr class="hide_row">
+                  <td class="td_0">6</td>
+                  <td class="td_1">66</td>
+                  <td class="td_2"><a href="https://trends.google.com/trends/explore?q=php+file&amp;date=2004-01-1+2019-10-11" target="_blank">php file</a></td>
+                </tr>
+                <tr class="hide_row">
+                  <td class="td_0">7</td>
+                  <td class="td_1">61</td>
+                  <td class="td_2"><a href="https://trends.google.com/trends/explore?q=get+php&amp;date=2004-01-1+2019-10-11" target="_blank">get php</a></td>
+                </tr>
+                <tr class="hide_row">
+                  <td class="td_0">8</td>
+                  <td class="td_1">46</td>
+                  <td class="td_2"><a href="https://trends.google.com/trends/explore?q=php+string&amp;date=2004-01-1+2019-10-11" target="_blank">php string</a></td>
+                </tr>
+                <tr class="hide_row">
+                  <td class="td_0">9</td>
+                  <td class="td_1">43</td>
+                  <td class="td_2"><a href="https://trends.google.com/trends/explore?q=php+download&amp;date=2004-01-1+2019-10-11" target="_blank">php download</a></td>
+                </tr>
+                <tr class="hide_row">
+                  <td class="td_0">10</td>
+                  <td class="td_1">42</td>
+                  <td class="td_2"><a href="https://trends.google.com/trends/explore?q=php+code&amp;date=2004-01-1+2019-10-11" target="_blank">php code</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
