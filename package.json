@@ -14,10 +14,10 @@
     ]
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "test_api_server": "set RUN_ENV=DEBUG && nodemon -w src/gcf src/api_server.js",
-    "test_server": "set RUN_ENV=DEBUG && nodemon --delay 3 -w ./ server.js",
-    "gulp": "find ./src |entr -c -s 'gulp'"
+    "test": "find ./src/gcf |entr -c -s 'cd ./src/gcf && mocha'",
+    "test_api_server": "set RUN_ENV=DEBUG && nodemon -w src/gcf api_server.js",
+    "test_server": "set RUN_ENV=DEBUG && nodemon --delay 1 -w ./docs/index.html server.js",
+    "gulp": "find ./src/static_pages |entr -c -s 'cd ./src/static_pages && gulp'"
   },
   "repository": {
     "type": "git",
